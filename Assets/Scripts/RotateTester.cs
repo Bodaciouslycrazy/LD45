@@ -8,6 +8,8 @@ public class RotateTester : MonoBehaviour
   private PointSupplyer pointSupplyer;
   [SerializeField]
   private Transform rotationParent;
+  [SerializeField]
+  private Transform camera;
 
   [SerializeField]
   private float timeScale = 1f;
@@ -29,16 +31,21 @@ public class RotateTester : MonoBehaviour
     float xCircle = x * Mathf.Sqrt(1 - z * z / 2) * amplitude;
     float zCircle = z * Mathf.Sqrt(1 - x * x / 2) * amplitude;
 
-    Vector3 targetAngle = new Vector3(zCircle, 0, -xCircle);
-    Vector3 currentAngle = transform.rotation.eulerAngles;
+
+    Vector3 forward = camera.forward;
+    forward.y = 0;
+    Quaternion camRotation = Quaternion.LookRotation(forward, Vector3.up);
+    Quaternion targetAngle = Quaternion.AngleAxis(zCircle, camRotation * Vector3.right) * Quaternion.AngleAxis(-xCircle, camRotation * Vector3.forward);
+
+    Quaternion currentAngle = transform.rotation;
 
     Vector3 rotatePoint = pointSupplyer.GetPoint();
 
     rotationParent.position = rotatePoint;
-    rotationParent.rotation = Quaternion.Euler(currentAngle);
+    rotationParent.rotation = currentAngle;
 
     transform.SetParent(rotationParent, true);
-    rotationParent.rotation = Quaternion.Lerp(Quaternion.Euler(currentAngle), Quaternion.Euler(targetAngle), 0.2f);
+    rotationParent.rotation = Quaternion.Lerp(currentAngle, targetAngle, 0.2f);
     transform.SetParent(null, true);
   }
 }

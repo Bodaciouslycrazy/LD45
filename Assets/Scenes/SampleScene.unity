@@ -912,6 +912,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointSupplyer: {fileID: 1435947352}
   rotationParent: {fileID: 1448908854}
+  camera: {fileID: 519420032}
   timeScale: 1
   amplitude: 25
 --- !u!1 &999453884

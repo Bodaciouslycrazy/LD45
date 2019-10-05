@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-  [SerializeField]
   private CameraController cameraController;
   [SerializeField]
   private float density = 1.5f;
@@ -18,6 +17,7 @@ public class Player : MonoBehaviour
   {
     rigidbody = GetComponent<Rigidbody>();
     sphere = GetComponent<SphereCollider>();
+    cameraController = Camera.main.GetComponent<CameraController>();
     rigidbody.maxAngularVelocity = 150;
     volume = (4f / 3f) * Mathf.PI * Mathf.Pow(sphere.radius, 3);
     SetVolume(volume);

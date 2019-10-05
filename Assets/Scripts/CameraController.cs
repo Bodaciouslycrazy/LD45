@@ -29,7 +29,9 @@ public class CameraController : MonoBehaviour
   private float mouseSensitivity = 1f;
   [SerializeField]
   private float joystickSensitivity = 1f;
-  
+
+  private float vy = 0f;
+
   private void Update()
   {
     //Manual camera rotation
@@ -39,7 +41,8 @@ public class CameraController : MonoBehaviour
 
     //Manage camera position
     Vector3 pos = transform.position;
-    float normalizedRingHeight = -((topBound - bottomBound) * Mathf.Atan(steepness * (shift + following.GetComponent<Rigidbody>().velocity.y)) / Mathf.PI) + ((topBound + bottomBound) / 2);
+    vy = Mathf.Lerp(vy, following.GetComponent<Rigidbody>().velocity.y, 0.3f);
+    float normalizedRingHeight = -((topBound - bottomBound) * Mathf.Atan(steepness * (shift + vy)) / Mathf.PI) + ((topBound + bottomBound) / 2);
     pos.y = following.position.y + (normalizedRingHeight * distance);
 
     float h = distance - (normalizedRingHeight * distance);

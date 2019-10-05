@@ -7,26 +7,26 @@ public class CameraController : MonoBehaviour
   [SerializeField]
   private Transform following;
   [SerializeField]
-  public float distance = 5f;
+  public float distance = 3.5f;
   [Header("Ring Height Function Vars")]
   [SerializeField]
   [Range(-1, 1)]
-  private float topBound = 1f;
+  private float topBound = 0.95f;
   [SerializeField]
   [Range(-1, 1)]
-  private float bottomBound = -1;
+  private float bottomBound = 0.1f;
   [SerializeField]
-  private float steepness = 1f;
+  private float steepness = .4f;
   [SerializeField]
   private float shift = 0f;
 
   [Space(10)]
   [SerializeField]
   [Range(0f,1f)]
-  private float focalHeight = 0;
+  private float focalHeight = 0.2f;
 
   [SerializeField]
-  private float mouseSensitivity = 1f;
+  private float mouseSensitivity = 3f;
   [SerializeField]
   private float joystickSensitivity = 1f;
 

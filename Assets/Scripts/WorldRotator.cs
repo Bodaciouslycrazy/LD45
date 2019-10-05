@@ -14,7 +14,7 @@ public class WorldRotator : MonoBehaviour
   private Transform camera;
 
   [SerializeField]
-  private float amplitude = 5f;
+  private float amplitude = 25f;
 
   private void Start()
   {

@@ -41,7 +41,7 @@ public class CameraController : MonoBehaviour
 
     //Manage camera position
     Vector3 pos = transform.position;
-    vy = Mathf.Lerp(vy, following.GetComponent<Rigidbody>().velocity.y, 0.3f);
+    vy = Mathf.Lerp(vy, following.GetComponent<Rigidbody>().velocity.y, 10f * Time.deltaTime);
     float normalizedRingHeight = -((topBound - bottomBound) * Mathf.Atan(steepness * (shift + vy)) / Mathf.PI) + ((topBound + bottomBound) / 2);
     pos.y = following.position.y + (normalizedRingHeight * distance);
 

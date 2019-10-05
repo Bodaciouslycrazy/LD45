@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
   private Rigidbody rigidbody;
   private float volume = 0f;
 
-  private const float cameraDistMult = 5;
+  private const float cameraDistMult = 6;
 
   private void Start()
   {

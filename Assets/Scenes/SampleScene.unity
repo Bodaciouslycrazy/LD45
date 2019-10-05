@@ -2295,9 +2295,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   following: {fileID: 1435947350}
   distance: 3.5
-  topBound: 0.8
+  topBound: 0.95
   bottomBound: 0.1
-  steepness: 0.5
+  steepness: 0.4
   shift: 0
   focalHeight: 0.2
   mouseSensitivity: 3
@@ -4531,7 +4531,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 971255243}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -5.1, z: 9.71}
+  m_LocalPosition: {x: 0, y: -5.1, z: 17.85}
   m_LocalScale: {x: 50, y: 0.5, z: 50}
   m_Children: []
   m_Father: {fileID: 998447445}
@@ -8455,7 +8455,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945679149}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -9.28, z: 16.41}
+  m_LocalPosition: {x: 0, y: -40.81, z: 56.39}
   m_LocalScale: {x: 50, y: 0.5, z: 50}
   m_Children: []
   m_Father: {fileID: 998447445}

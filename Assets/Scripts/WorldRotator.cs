@@ -2,36 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotateTester : MonoBehaviour
+public class WorldRotator : MonoBehaviour
 {
-  [SerializeField]
-  private PointSupplyer pointSupplyer;
+  public static WorldRotator Instance = null;
+
+  //[SerializeField]
+  //private PointSupplyer pointSupplyer;
   [SerializeField]
   private Transform rotationParent;
   [SerializeField]
   private Transform camera;
 
   [SerializeField]
-  private float timeScale = 1f;
-  [SerializeField]
   private float amplitude = 5f;
 
-
-  private void Update()
+  private void Start()
   {
-    //float x = Mathf.Cos(Time.time * 2 * Mathf.PI * timeScale) * amplitude;
-    //float z = Mathf.Sin(Time.time * 2 * Mathf.PI * timeScale) * amplitude;
+    Instance = this;
   }
 
   private void FixedUpdate()
   {
     float x = Input.GetAxis("Horizontal");
     float z = Input.GetAxis("Vertical");
-
     float xCircle = x * Mathf.Sqrt(1 - z * z / 2) * amplitude;
     float zCircle = z * Mathf.Sqrt(1 - x * x / 2) * amplitude;
 
-
+    //Change our axis relative to camera facing
     Vector3 forward = camera.forward;
     forward.y = 0;
     Quaternion camRotation = Quaternion.LookRotation(forward, Vector3.up);
@@ -39,11 +36,14 @@ public class RotateTester : MonoBehaviour
 
     Quaternion currentAngle = transform.rotation;
 
-    Vector3 rotatePoint = pointSupplyer.GetPoint();
+    //Get point to rotate around
+    Vector3 rotatePoint = PointSupplyer.Instance.GetPoint();
 
+    //most empty object to that point and the current rotation
     rotationParent.position = rotatePoint;
     rotationParent.rotation = currentAngle;
 
+    //Set parent, rotate, then remove parent
     transform.SetParent(rotationParent, true);
     rotationParent.rotation = Quaternion.Lerp(currentAngle, targetAngle, 0.2f);
     transform.SetParent(null, true);

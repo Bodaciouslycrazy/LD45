@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PointSupplyer : MonoBehaviour
 {
+  public static PointSupplyer Instance = null;
+
   private void Start()
   {
-    GetComponent<Rigidbody>().maxAngularVelocity = 100;
+    Instance = this;
   }
 
   public Vector3 GetPoint()

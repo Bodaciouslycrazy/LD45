@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
   private void OnCollisionEnter(Collision collision)
   {
     float force = collision.impulse.magnitude;
-    Debug.Log(force);
+    //Debug.Log(force);
     if(force > minImpactForce)
     {
       float slope = 1f / (maxImpactForce - minImpactForce);

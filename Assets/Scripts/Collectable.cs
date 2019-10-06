@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public class Collectable : MonoBehaviour
 {
   private static List<Collectable> allCollectables = new List<Collectable>();
@@ -22,10 +23,10 @@ public class Collectable : MonoBehaviour
     allCollectables.Remove(this);
   }
 
-  public void Collect(Transform newParent)
+  public virtual void Collect(Player player)
   {
     collider.enabled = false;
-    transform.SetParent(newParent, true);
+    transform.SetParent(player.transform, true);
   }
 
   private void SetCollectable(bool canCollect)

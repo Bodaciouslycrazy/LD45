@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+  public enum CameraMode
+  {
+    NORMAL,
+    FALLING
+  }
+
   [SerializeField]
   private Transform following;
   [SerializeField]
@@ -31,8 +37,27 @@ public class CameraController : MonoBehaviour
   private float joystickSensitivity = 1f;
 
   private float vy = 0f;
+  private CameraMode currentMode = CameraMode.NORMAL;
+
+  public void SetMode(CameraMode newMode)
+  {
+    currentMode = newMode;
+  }
 
   private void Update()
+  {
+    switch(currentMode)
+    {
+      case CameraMode.NORMAL:
+        NormalUpdate();
+        break;
+      case CameraMode.FALLING:
+        FallingUpdate();
+        break;
+    }
+  }
+
+  private void NormalUpdate()
   {
     //Manual camera rotation
     float mouseRotation = Input.GetAxis("MouseX") * mouseSensitivity + Input.GetAxis("Horizontal2") * Time.deltaTime * 10;
@@ -57,5 +82,10 @@ public class CameraController : MonoBehaviour
     transform.position = pos;
 
     transform.LookAt(following.position + new Vector3(0, focalHeight * distance, 0), Vector3.up);
+  }
+
+  private void FallingUpdate()
+  {
+    transform.LookAt(following.position + (Vector3.up * focalHeight * distance), Vector3.up);
   }
 }

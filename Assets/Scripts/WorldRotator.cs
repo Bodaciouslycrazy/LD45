@@ -13,7 +13,7 @@ public class WorldRotator : MonoBehaviour
   [SerializeField]
   private float amplitude = 25f;
 
-  private void Start()
+  private void Awake()
   {
     Instance = this;
   }

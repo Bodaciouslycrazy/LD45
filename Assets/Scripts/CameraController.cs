@@ -39,6 +39,8 @@ public class CameraController : MonoBehaviour
   private float vy = 0f;
   private CameraMode currentMode = CameraMode.NORMAL;
 
+  public bool activated = false;
+
   public void SetMode(CameraMode newMode)
   {
     currentMode = newMode;
@@ -60,9 +62,12 @@ public class CameraController : MonoBehaviour
   private void NormalUpdate()
   {
     //Manual camera rotation
-    float mouseRotation = Input.GetAxis("MouseX") * mouseSensitivity + Input.GetAxis("Horizontal2") * Time.deltaTime * 10;
-    float joystickRotation = Input.GetAxis("Horizontal2") * Time.deltaTime * 360 * joystickSensitivity;
-    transform.RotateAround(following.position, Vector3.up, mouseRotation + joystickRotation);
+    if (activated)
+    {
+      float mouseRotation = Input.GetAxis("MouseX") * mouseSensitivity + Input.GetAxis("Horizontal2") * Time.deltaTime * 10;
+      float joystickRotation = Input.GetAxis("Horizontal2") * Time.deltaTime * 360 * joystickSensitivity;
+      transform.RotateAround(following.position, Vector3.up, mouseRotation + joystickRotation);
+    }
 
     //Manage camera position
     Vector3 pos = transform.position;

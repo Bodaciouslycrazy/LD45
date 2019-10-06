@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
     }
     else if(other.gameObject.tag == "Fall")
     {
-      StartCoroutine(Fall());
+      LevelController.CurrentLevel.FallOut();
     }
   }
   private void OnCollisionEnter(Collision collision)
@@ -99,19 +99,12 @@ public class Player : MonoBehaviour
     }
   }
 
-  private IEnumerator Fall()
+  public void FinishLevel()
   {
-    Camera.main.GetComponent<CameraController>().SetMode(CameraController.CameraMode.FALLING);
-    WorldRotator.Instance.activated = false;
-    yield return new WaitForSeconds(1.5f);
-    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    StartCoroutine(FinishLevelCoroutine());
   }
 
-  public void FinishLevel(string nextScene)
-  {
-    StartCoroutine(FinishLevelCoroutine(nextScene));
-  }
-  private IEnumerator FinishLevelCoroutine(string nextScene)
+  private IEnumerator FinishLevelCoroutine()
   {
     WorldRotator.Instance.activated = false;
     rigidbody.useGravity = false;
@@ -129,8 +122,6 @@ public class Player : MonoBehaviour
       timeFlying -= Time.deltaTime;
       yield return new WaitForEndOfFrame();
     }
-
-    SceneManager.LoadScene(nextScene);
   }
 
   private void Explode()

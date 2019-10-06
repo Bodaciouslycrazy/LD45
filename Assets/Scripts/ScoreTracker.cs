@@ -17,9 +17,21 @@ public class ScoreTracker
 {
   private static ScoreTracker instance;
 
-  private List<LevelData> levels;
-  const string defaultFile = "";
-  private ScoreTracker() {}
+  public List<LevelData> levels;
+  const string defaultFile = "/save.json";
+  private ScoreTracker() {
+    string path = Application.persistentDataPath + defaultFile;
+    if (File.Exists(path))
+    {
+      Debug.Log("Reading file from " + path);
+      readData(path);
+    }
+    else
+    {
+      Debug.Log("Couldn't find save. Creating new.");
+      levels = new List<LevelData>();
+    }
+  }
 
   public static ScoreTracker Instance
   {
@@ -48,6 +60,8 @@ public class ScoreTracker
     if (data == null)
     {
       data = new LevelData();
+      data.level = level;
+      data.runTimes = new List<float>();
       levels.Add(data);
     }
 
@@ -70,6 +84,12 @@ public class ScoreTracker
 
       data.runTimes.RemoveAt(indexOfMin);
     }
+  }
+
+  public void Save()
+  {
+    string path = Application.persistentDataPath + defaultFile;
+    writeData(path);
   }
 
   public void readData(string filename)

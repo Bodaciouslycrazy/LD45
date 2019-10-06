@@ -108,6 +108,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   requiredVolume: 1
   volume: 0.4
+  collectSound: {fileID: 8300000, guid: 67b7a890d1c44294dbc96188bb3dd2a4, type: 3}
+  soundvolume: 1
+  soundPitch: 1
   keyType: 0
   rotator: {fileID: 572474483429014214}
 --- !u!114 &572474483429014214

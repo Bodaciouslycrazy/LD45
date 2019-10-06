@@ -108,3 +108,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   requiredVolume: 0.7
   volume: 0.3
+  collectSound: {fileID: 8300000, guid: 08484c24d565abb4b92c13baa6ce2bc2, type: 3}
+  soundvolume: 1
+  soundPitch: 0.8

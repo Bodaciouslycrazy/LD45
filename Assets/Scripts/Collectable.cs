@@ -9,6 +9,9 @@ public class Collectable : MonoBehaviour
 
   public float requiredVolume = 0.5f;
   public float volume = 0.3f;
+  public AudioClip collectSound;
+  public float soundvolume = 1f;
+  public float soundPitch = 1f;
 
   private Collider collider;
 
@@ -27,6 +30,10 @@ public class Collectable : MonoBehaviour
   {
     collider.enabled = false;
     transform.SetParent(player.transform, true);
+    if(collectSound != null)
+    {
+      Sounds.Instance.PlaySound(collectSound, transform.position, soundvolume, soundPitch);
+    }
   }
 
   private void SetCollectable(bool canCollect)

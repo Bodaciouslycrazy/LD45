@@ -10,6 +10,13 @@ public class Player : MonoBehaviour
   private CameraController cameraController;
   [SerializeField]
   private float density = 1.5f;
+  [SerializeField]
+  private AudioClip impactSound;
+  [SerializeField]
+  private float minImpactForce = 0f;
+  [SerializeField]
+  private float maxImpactForce = 0f;
+
   private SphereCollider sphere;
   private Rigidbody rigidbody;
   private float volume = 0f;
@@ -48,7 +55,7 @@ public class Player : MonoBehaviour
 
   public void AddKey(KeyCollectable.KeyType keyType)
   {
-    Debug.Log("ADDED KEY");
+    //Debug.Log("ADDED KEY");
     collectedKeys.Add(keyType);
   }
 
@@ -78,6 +85,17 @@ public class Player : MonoBehaviour
     else if(other.gameObject.tag == "Fall")
     {
       StartCoroutine(Fall());
+    }
+  }
+  private void OnCollisionEnter(Collision collision)
+  {
+    float force = collision.impulse.magnitude;
+    Debug.Log(force);
+    if(force > minImpactForce)
+    {
+      float slope = 1f / (maxImpactForce - minImpactForce);
+      float vol = Mathf.Clamp(slope * (force - minImpactForce), 0f, 1f);
+      Sounds.Instance.PlaySound(impactSound, transform.position, vol);
     }
   }
 

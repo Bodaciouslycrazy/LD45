@@ -8,7 +8,7 @@ public class WorldRotator : MonoBehaviour
 
   public bool activated = true;
   [SerializeField]
-  private Transform camera;
+  private Transform mainCamera;
 
   [SerializeField]
   private float amplitude = 25f;
@@ -31,7 +31,7 @@ public class WorldRotator : MonoBehaviour
     float zCircle = z * Mathf.Sqrt(1 - x * x / 2) * amplitude;
 
     //Change our axis relative to camera facing
-    Vector3 forward = camera.forward;
+    Vector3 forward = mainCamera.forward;
     forward.y = 0;
     Quaternion camRotation = Quaternion.LookRotation(forward, Vector3.up);
     Quaternion targetAngle = Quaternion.AngleAxis(zCircle, camRotation * Vector3.right) * Quaternion.AngleAxis(-xCircle, camRotation * Vector3.forward);

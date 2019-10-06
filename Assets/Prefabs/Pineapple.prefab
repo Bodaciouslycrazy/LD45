@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3775342069573117667}
   - component: {fileID: 3775342069573117666}
   m_Layer: 0
-  m_Name: pineapple
+  m_Name: Pineapple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,3 +108,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   requiredVolume: 1.5
   volume: 0.6
+  collectSound: {fileID: 8300000, guid: 08484c24d565abb4b92c13baa6ce2bc2, type: 3}
+  soundvolume: 1
+  soundPitch: 0.6

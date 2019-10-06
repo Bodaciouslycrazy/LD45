@@ -109,6 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   requiredVolume: 0
   volume: 0.03
+  collectSound: {fileID: 8300000, guid: 08484c24d565abb4b92c13baa6ce2bc2, type: 3}
   rotator: {fileID: 6319183322234949010}
 --- !u!114 &6319183322234949010
 MonoBehaviour:
@@ -122,3 +123,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2704108d226bb9f45a32639de80ca85f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1
+  rotationAxis: {x: 0, y: 0, z: 1}

@@ -57,6 +57,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   density: 0.8
+  impactSound: {fileID: 8300000, guid: 779000cf5a841cd40a4bc8ad6ff023a7, type: 3}
+  minImpactForce: 0.8
+  maxImpactForce: 10
 --- !u!114 &1925190325541187789
 MonoBehaviour:
   m_ObjectHideFlags: 0
